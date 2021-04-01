@@ -12,11 +12,11 @@
                 <ion-datetime [value]="fechaNaci.toISOString()" display-format="DD MMMM YYYY" (ionChange)="cambioFecha( $event )"></ion-datetime>
             </ion-item>
         </ion-item>
-        
+
         <ion-list-header>
-                <ion-label>Restricciones</ion-label>
+            <ion-label>Restricciones</ion-label>
         </ion-list-header>
-        
+
         <ion-item>
             <ion-label>Min y Max</ion-label>
             <ion-datetime display-format="DD MMMM YYYY" min="2015-01-01" max="2025-12-31"></ion-datetime>
@@ -29,7 +29,7 @@
 
         <ion-item>
             <ion-label>Custom options</ion-label>
-            <ion-datetime [pickerOptions]="customPickerOptions()"></ion-datetime>
+            <ion-datetime [pickerOptions]="customPickerOptions" [yearValues]="customYearValues"></ion-datetime>
         </ion-item>
     </ion-list>
 
