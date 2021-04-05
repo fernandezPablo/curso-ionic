@@ -1,20 +1,30 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="main">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-menu-toggle *ngFor="let componente of componentes | async" >
-          <ion-item [routerLink]="componente.redirectTo"> 
-            <ion-icon slot="start" [name]="componente.icon" color="primary"></ion-icon> {{ componente.name }}
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+    <!-- El split pane debe envolver a todo el codigo de nuestras vistas
+    el lugar mas adecuado para hacer esto en el app.component.html ya que este
+    es el punto de inicio de nuestra app -->
+    <!-- can be "xs", "sm", "md", "lg", or "xl" -->
+    <!-- con contentId especificamos la parte que queremos mostrar en este caso
+    el contenido que se renderiza en el router-outlet -->
+    <ion-split-pane when="md" contentId="main">
+        <ion-menu side="start" menuId="first" contentId="main">
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-title>Menu</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <ion-list>
+                    <!-- autoHide sirve para mostrar el menu en dispositivos de mayor tamaño cuando se usa el split-pane -->
+                    <ion-menu-toggle *ngFor="let componente of componentes | async" [autoHide]="false">
+                        <ion-item [routerLink]="componente.redirectTo">
+                            <ion-icon slot="start" [name]="componente.icon" color="primary"></ion-icon> {{ componente.name }}
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
 
-  <ion-router-outlet id="main"></ion-router-outlet>
+        <ion-router-outlet id="main"></ion-router-outlet>
+    </ion-split-pane>
+
 </ion-app>
