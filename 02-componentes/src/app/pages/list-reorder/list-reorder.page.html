@@ -4,15 +4,24 @@
             <ion-back-button color="primary" defaultHref="/"></ion-back-button>
         </ion-buttons>
         <ion-title color="primary">List-Reorder</ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button (click)=" toggle = !toggle">
+                <ion-icon slot="start" [name]="toggle ? 'toggle-outline': 'toggle' "></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
-        <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+        <ion-reorder-group (ionItemReorder)="doReorder($event)" [disabled]="toggle">
             <ion-item *ngFor="let personaje of personajes">
                 <ion-label>{{personaje}}</ion-label>
-                <ion-reorder></ion-reorder>
+                <ion-reorder>
+                    <ion-icon *ngIf="toggle" name="ban-outline"></ion-icon>
+                </ion-reorder>
             </ion-item>
         </ion-reorder-group>
     </ion-list>
